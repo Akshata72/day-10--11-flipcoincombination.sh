@@ -1,25 +1,47 @@
-head=1
-tail=0
-head_count=0
-tail_count=0
-for(( i=1; i<=100;  i++))
-do
-result=$((RANDOM%2))
+H=1
+T=0
+HHcount=0
+HTcount=0
+TTcount=0
+THcount=0
 
-if (($result==1))
+
+
+
+
+for((i=1; i<=100; i++))
+do
+   random_num=$((RANDOM%2))
+   random_num2=$((RANDOM%2))
+
+if((random_num==1 && random_num2==1))
 then
-   ((head_count++))
+      echo "HH"
+       ((HHcount++))
+elif((random_num==1 && random_num2==0))
+then
+      echo "HT"
+       ((HTcount++))
+
+
+elif((random_num==0 && random_num2==0))
+then
+       echo "TT"
+          ((TTcount++))
+
 else
-   ((tail_count++))  
+       echo "TH"
+          ((THcount++))
+
 fi
 done
 
-coin[winner]="head"
-coin[losser]="tail"
 
-echo ${coin[@]}
+echo "% of HH"= $HHcount "%"
+echo "% of HT"= $HTcount "%"
+echo "% of TT"= $TTcount "%"
+echo "% of TH"= $THcount "%"
 
-echo "% of Head " =$head_count
-echo "% of tail " =$tail_count
+
 
 
